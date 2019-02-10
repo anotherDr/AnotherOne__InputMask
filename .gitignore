@@ -1,0 +1,8 @@
+# folders
+.idea
+node_modules
+dist
+__materials
+
+# files
+package-lock.json
