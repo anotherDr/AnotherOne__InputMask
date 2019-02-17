@@ -8,7 +8,7 @@
 			       @input="dateMaskinput($event)"
 			/>
 			<div class="input-group-append">
-				<button class="btn btn-outline-secondary btn-datepicker">
+				<div class="btn btn-outline-secondary btn-datepicker">
 					<i class="far fa-calendar"></i>
 					<datepicker
 							@selected="dateSelected"
@@ -18,7 +18,7 @@
 							:value="computedDate"
 							:disabledDates="state.disabledDates"
 					/>
-				</button>
+				</div>
 			</div>
 		</div>
 		<!-- for test -->
