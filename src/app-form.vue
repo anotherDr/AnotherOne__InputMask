@@ -14,6 +14,7 @@
 					<input type="text"
 					       class="form-control"
 					       :placeholder="setPhonePlaceholder()"
+					       @keydown="phoneKeydown($event)"
 					       @input="phoneMaskinput($event)"
 					/>
 				</div>
@@ -73,6 +74,7 @@
 				/* ---------------------------------------------
 				 * MASKED METHODS
 				 * --------------------------------------------- */
+				kde: null,
 				phone: '',
 				
 				
@@ -99,11 +101,14 @@
 			setPhonePlaceholder(){
 				return phoneMask.setPlaceholder();
 			},
+			phoneKeydown(e){
+				this.kde = e;
+			},
 			phoneMaskinput(e){
 				let th = this;
 				
 				let elem = e.target,
-					result = phoneMask.maskCore(e);
+					result = phoneMask.maskCore(e, th.kde);
 				
 				th.phone = result.output;
 				elem.value = result.output;

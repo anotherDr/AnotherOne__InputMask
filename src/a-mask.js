@@ -114,7 +114,7 @@ export default class AMask {    // A Mask
 	 * @param {Object} e
 	 * @returns {Object}
 	 * */
-	maskCore(e) {
+	maskCore(e,kde) {
 			/** @type {AMask} */
 		let th = this,
 			/** @type {Object} */
@@ -129,16 +129,19 @@ export default class AMask {    // A Mask
 			output,
 			/** @type {number} */
 			cursorPosition;
-			
-		if (e.key === 'Backspace'  ||
-			e.key === 'ArrowLeft' ) {
-			return {output: value, cursorPosition: positionStart};
-		}
-		if (e.key === 'Backspace'  ||
-			e.key === 'ArrowLeft'  ||
-			e.key === 'ArrowUp'    ||
-			e.key === 'ArrowRight' ||
-			e.key === 'ArrowDown' ) {
+		
+			console.log(kde);
+		
+		/* for Chrome */
+		// if (e.inputType === 'deleteContentBackward' || e.inputType === 'deleteContentForward') {
+		// 	return {output: value, cursorPosition: positionStart};
+		// }
+		
+		if (kde.key === 'Backspace'  ||
+			kde.key === 'ArrowLeft'  ||
+			kde.key === 'ArrowUp'    ||
+			kde.key === 'ArrowRight' ||
+			kde.key === 'ArrowDown' ) {
 			return {output: value, cursorPosition: position};
 		}
 		

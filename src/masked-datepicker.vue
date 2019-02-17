@@ -5,6 +5,7 @@
 			       class="form-control"
 			       v-model="typedDate"
 			       placeholder="__.__.____"
+			       @keydown="dateKeydown($event)"
 			       @input="dateMaskinput($event)"
 			/>
 			<div class="input-group-append">
@@ -56,6 +57,7 @@
 		},
 		data() {
 			return {
+				kde: null,
 				typedDate: '',
 				curLang: this.lang === 'ru' ? ru : en,
 				
@@ -108,11 +110,15 @@
 		},
 		methods: {
 			/* Date */
+			dateKeydown(e) {
+				console.log(e)
+				this.kde = e;
+			},
 			dateMaskinput(e) {
 				let th = this;
 				
 				let elem = e.target,
-					result = dateMask.maskCore(e);
+					result = dateMask.maskCore(e, th.kde);
 				
 				th.typedDate = result.output;
 				elem.value = result.output;
