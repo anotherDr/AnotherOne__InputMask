@@ -102,6 +102,9 @@ export default class AMask {    // A Mask
 		}
 		else if ( !/[0-9]/.test(char) ) {
 			position--;
+			if (position < 0) {
+				position = 0;
+			}
 		}
 		return position;
 	}
@@ -120,11 +123,17 @@ export default class AMask {    // A Mask
 			value = elem.value,
 			/** @type {number} */
 			position = elem.selectionEnd,
+			/** @type {number} */
+			positionStart = elem.selectionStart,
 			/** @type {string} */
 			output,
 			/** @type {number} */
 			cursorPosition;
 			
+		if (e.key === 'Backspace'  ||
+			e.key === 'ArrowLeft' ) {
+			return {output: value, cursorPosition: positionStart};
+		}
 		if (e.key === 'Backspace'  ||
 			e.key === 'ArrowLeft'  ||
 			e.key === 'ArrowUp'    ||
